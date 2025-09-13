@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pradeepthi — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet" />
+
+    Bootstrap 5
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    Bootstrap Icons (for social/contact icons)
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        /* Color system: 5 total
+         - Primary dark blue (background): #152238
+         - Raised surface dark blue: #192841
+         - Accent yellow: #f5c518
+         - Text primary: #ffffff
+         - Text muted: #9ca3af
+      */
+        :root {
+            --blue-900: #152238;
+            --blue-800: #192841;
+            --yellow-500: #f5c518;
+            --text: #ffffff;
+            --muted: #9ca3af;
+            --ring: rgba(245, 197, 24, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--blue-900);
+            color: var(--text);
+            font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+                sans-serif;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        .navbar-brand {
+            font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto,
+                Arial, sans-serif;
+            letter-spacing: 0.2px;
+        }
+
+        .text-muted {
+            color: var(--muted) !important;
+        }
+
+        .badge-accent {
+            background: rgba(245, 197, 24, 0.1);
+            color: var(--yellow-500);
+            border: 1px solid rgba(245, 197, 24, 0.25);
+        }
+
+        .link-accent {
+            color: var(--yellow-500);
+            text-decoration: none;
+        }
+
+        .link-accent:hover {
+            color: #ffe58a;
+            text-decoration: underline;
+        }
+
+        /* Navbar - frosted dark bar */
+        .navbar {
+            background: rgba(21, 34, 56, 0.7) !important;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-link {
+            color: var(--text) !important;
+            opacity: 0.9;
+        }
+
+        .nav-link:hover {
+            color: var(--yellow-500) !important;
+            opacity: 1;
+        }
+
+        /* Buttons */
+        .btn-primary,
+        .btn-ghost {
+            background-color: var(--yellow-500);
+            border-color: var(--yellow-500);
+            color: #111;
+            font-weight: 300;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-ghost:focus,
+        .btn-ghost:hover {
+            background-color: #ffd33f;
+            border-color: #ffd33f;
+            color: #111;
+        }
+
+        .btn-ghost:hover,
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+        }
+
+        /* Cards (glass/raised) */
+        .card-dark {
+            background: var(--blue-800);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .fs5
+
+        /* Hero */
+        .hero {
+            padding-top: 7rem;
+            /* account for navbar */
+            padding-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-weight: 300;
+            line-height: 1.1;
+        }
+
+        .hero-sub {
+            font-size: 16px;
+        }
+
+        .avatar-frame {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .avatar-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            box-shadow: 0 0 0 6px var(--ring) inset;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            border-radius: 30px;
+
+        }
+
+        /* Section headings */
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-heading .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--yellow-500);
+            box-shadow: 0 0 0 6px rgba(245, 197, 24, 0.15);
+        }
+
+        /* Skill chips */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 0.9rem;
+            gap: 8px;
+            transition: transform 160ms ease;
+        }
+
+        .chip:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Projects grid */
+        .project-card {
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-cover {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Make project cards equal height and aligned */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+
+
+        .project-cover img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Make flex wrap nicely on smaller screens */
+
+
+
+        .project-cover img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 500ms ease, transform 500ms ease;
+        }
+
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Utility spacing tweaks */
+        .max-w {
+            max-width: 1100px;
+        }
+
+        /* Make section card headings yellow */
+        .card h3 {
+            color: var(--yellow-500);
+        }
+
+        @media (max-width: 992px) {
+            .avatar-frame {
+                max-width: 350px;
+                /* smaller image on tablets/mobiles */
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                /* text scales down */
+            }
+
+            .hero-sub {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding-top: 5rem;
+                padding-bottom: 2rem;
+            }
+
+            .project-card {
+                margin: 0 auto;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    Navbar
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container max-w">
+            <a class="navbar-brand fw-bold" href="#top">Pradeepthi Kamichetty</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+                aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#achievements">Achievements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certifications">Certifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    Hero
+    <header id="top" class="hero">
+        <div class="container max-w">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-lg-6 reveal">
+                    <span class="badge badge-accent mb-3">IT Student • Competitive Coding • Full‑Stack</span>
+                    <h1 class="hero-title display-5 mb-3">
+                        Hi, I'm <span style="color: var(--yellow-500)">Pradeepthi Kamichetty</span>
+                    </h1>
+                    <p class="hero-sub text-muted mb-4">
+                        Motivated and enthusiastic third-year B.Tech (Information Technology) student passionate about
+                        competitive coding and full‑stack development. I collaborate effectively and manage time well to
+                        consistently meet deadlines.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="btn btn-primary" href="#contact" aria-label="Contact me">Contact Me</a>
+                        <a class="btn btn-ghost"
+                            href="https://drive.google.com/file/d/12CZvx5EOdE-71bEbWJ0Af2sRbd5Dz1Zn/view?usp=drivesdk"
+                            target="_blank" rel="noopener" aria-label="Download resume">Download Resume</a>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a class="link-accent d-inline-flex align-items-center gap-2" href="tel:+919390240204">
+                            <i class="bi bi-telephone"></i> +91 9390240204
+                        </a>
+                        <a class="link-accent d-inline-flex align-items-center gap-2"
+                            href="mailto:deepthikamichetty336@gmail.com">
+                            <i class="bi bi-envelope"></i> deepthikamichetty336@gmail.com
+                        </a>
+                        <a class="link-accent d-inline-flex align-items-center gap-2"
+                            href="https://www.linkedin.com/in/deepthi-kamichetty-bbb064295/" target="_blank"
+                            rel="noopener">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        <a class="link-accent d-inline-flex align-items-center gap-2"
+                            href="https://github.com/KvPradeepthi" target="_blank" rel="noopener">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="avatar-frame">
+                        <img class="avatar-img" src="Portfolio3.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="about" class="py-4">
+        <div class="container max-w">
+            <div class="row g-4">
+                <div class="col-12 col-lg-7 reveal">
+                    <div class="section-heading">
+                        <span class="dot"></span>
+                        <h2 class="h3 m-0">About</h2>
+                    </div>
+                    <div class="card card-dark p-4">
+                        <p class="mb-0 text-muted">
+                            Motivated and enthusiastic third-year B.Tech Information Technology student with a passion
+                            for
+                            competitive coding and full‑stack development. I collaborate and manage time effectively,
+                            ensuring
+                            deadlines are consistently met.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 reveal">
+                    <div class="section-heading">
+                        <span class="dot"></span>
+                        <h2 class="h3 m-0">Quick Facts</h2>
+                    </div>
+                    <div class="card card-dark p-4">
+                        <ul class="mb-0 text-muted">
+                            <li>3rd Year IT Student</li>
+                            <li>Open to internships and trainee roles</li>
+                            <li>Interested in Web, Mobile Development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section id="education" class="py-4"> <div class="container max-w"> <div class="section-heading reveal"> <span class="dot"></span> <h2 class="h3 m-0">Education</h2> </div> <div class="row g-4"> <div class="col-12 reveal"> <div class="card card-dark p-4 h-100"> <h3 class="fs-5 mb-1">B.Tech in Information Technology</h3> <div class="text-muted">Aditya University, Surampalem — 3rd Year</div> <div class="text-muted">Expected Graduation: 2027 • Current CGPA: 9.55 / 10</div> </div> </div> <div class="col-12 reveal"> <div class="card card-dark p-4 h-100"> <h3 class="fs-5 mb-1">Intermediate</h3> <div class="text-muted">Sri Sai Junior College, Yanam</div> <div class="text-muted">(2021 – 2023)</div> </div> </div> <div class="col-12 reveal"> <div class="card card-dark p-4 h-100"> <h3 class="fs-5 mb-1">SSC</h3> <div class="text-muted">Nallam Residential Concept School, Yanam</div> <div class="text-muted">(2021)</div> </div> </div> </section>
+    
+    <section id="skills" class="py-4">
+        <div class="container max-w">
+            <div class="section-heading reveal">
+                <span class="dot"></span>
+                <h2 class="h3 m-0">Skills</h2>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="card card-dark p-4 h-100">
+                        <h3 class="fs-5 mb-3">Programming Languages</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="chip"><i class="bi bi-code"></i> Python</span>
+                            <span class="chip"><i class="bi bi-code"></i> Java</span>
+                            <span class="chip"><i class="bi bi-code"></i> C</span>
+                            <span class="chip"><i class="bi bi-code"></i> SQL</span>
+                            <span class="chip"><i class="bi bi-code"></i> C++ (Familiar)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="card card-dark p-4 h-100">
+                        <h3 class="fs-5 mb-3">Tools & Technologies</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="chip"><i class="bi bi-window"></i> HTML</span>
+                            <span class="chip"><i class="bi bi-window"></i> CSS</span>
+                            <span class="chip"><i class="bi bi-diagram-3"></i> Django</span>
+                            <span class="chip"><i class="bi bi-bar-chart"></i> Power BI (Basics)</span>
+                            <span class="chip"><i class="bi bi-database"></i> MySQL</span>
+                            <span class="chip"><i class="bi bi-pen"></i> AutoCAD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="card card-dark p-4 h-100">
+                        <h3 class="fs-5 mb-3">Technical Proficiencies</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="chip"><i class="bi bi-lightning"></i> Data Structures & Algorithms</span>
+                            <span class="chip"><i class="bi bi-trophy"></i> Competitive Programming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="card card-dark p-4 h-100">
+                        <h3 class="fs-5 mb-3">Soft Skills</h3>
+                        <ul class="mb-0 text-muted">
+                            <li>Strong analytical and problem-solving skills</li>
+                            <li>Effective communicator and team player</li>
+                            <li>Time management and multitasking abilities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-4">
+        <div class="container max-w">
+            <div class="section-heading reveal">
+                <span class="dot"></span>
+                <h2 class="h3 m-0">Experience</h2>
+            </div>
+
+            <div class="card card-dark p-4 reveal">
+                <div class="d-flex flex-column flex-md-row justify-content-between">
+                    <div>
+                        <h3 class="fs-5 mb-1">FSD with React Native Trainee</h3>
+                        <div class="text-muted">Technical Hub</div>
+                    </div>
+                    <div class="text-muted">— Present</div>
+                </div>
+                <ul class="mt-3 mb-0 text-muted">
+                    <li>Learning full-stack fundamentals and cross-platform mobile development with React Native.</li>
+                    <li>Collaborating on hands-on projects and improving problem-solving skills.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-4">
+        <div class="container max-w">
+            <div class="section-heading reveal">
+                <span class="dot"></span>
+                <h2 class="h3 m-0">Projects</h2>
+            </div>
+
+
+            <!-- Row 1: first two projects -->
+            <div class="d-flex flex-wrap justify-content-center gap-4 mb-4">
+                <div class="flex-fill reveal" style="max-width: 48%;">
+                    <div class="card card-dark h-100 project-card d-flex flex-column">
+                        <div class="project-cover">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="YouNique Care website cover" />
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="fs-5 mt-2">YouNique Care Website</h3>
+                            <p class="text-muted mb-2">
+                                Personalized recommendations based on BMI and skin type.
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge badge-accent me-2">HTML</span>
+                                <span class="badge badge-accent me-2">CSS</span>
+                            </div>
+                            <div class="mt-auto d-flex gap-2">
+                                <a class="btn btn-primary btn-sm"
+                                    href="https://github.com/KvPradeepthi/YouNique-Care-Website" target="_blank">
+                                    <i class="bi bi-github me-1"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-fill reveal" style="max-width: 48%;">
+                    <div class="card card-dark h-100 project-card d-flex flex-column">
+                        <div class="project-cover">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop"
+                                alt="Password Generator cover" />
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="fs-5 mt-2">Password Generator</h3>
+                            <p class="text-muted mb-2">
+                                Generates strong random passwords with options for length, numbers, symbols, and
+                                uppercase letters.
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge badge-accent me-2">HTML</span>
+                                <span class="badge badge-accent me-2">CSS</span>
+                            </div>
+                            <div class="mt-auto d-flex gap-2">
+                                <a class="btn btn-primary btn-sm"
+                                    href="https://github.com/KvPradeepthi/PassWordGenerator" target="_blank">
+                                    <i class="bi bi-github me-1"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: next two projects -->
+            <div class="d-flex flex-wrap justify-content-center gap-4">
+                <div class="flex-fill reveal" style="max-width: 48%;">
+                    <div class="card card-dark h-100 project-card d-flex flex-column">
+                        <div class="project-cover">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
+                                alt="Scientific Calculator cover" />
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="fs-5 mt-2">Scientific Calculator</h3>
+                            <p class="text-muted mb-2">
+                                A simple and efficient scientific calculator supporting arithmetic, trigonometry, logs,
+                                powers, and more.
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge badge-accent me-2">HTML</span>
+                                <span class="badge badge-accent me-2">CSS</span>
+                            </div>
+                            <div class="mt-auto d-flex gap-2">
+                                <a class="btn btn-primary btn-sm"
+                                    href="https://github.com/KvPradeepthi/ScientificCalculator" target="_blank">
+                                    <i class="bi bi-github me-1"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-fill reveal" style="max-width: 48%;">
+                    <div class="card card-dark h-100 project-card d-flex flex-column">
+                        <div class="project-cover">
+                            <img src="Hub.png"
+                                alt="Hustle Hub cover" />
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="fs-5 mt-2">Hustle Hub</h3>
+                            <p class="text-muted mb-2">
+                                A collaborative hub to organize tasks and resources for side projects and team
+                                initiatives.
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge badge-accent me-2">HTML</span>
+                                <span class="badge badge-accent me-2">CSS</span>
+                                <span class="badge badge-accent me-2">JS</span>
+                            </div>
+                            <div class="mt-auto d-flex gap-2">
+                                
+                                <a class="btn btn-ghost btn-sm" href="#" target="_blank">
+                                    <i class="bi bi-github me-1"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    </div>
+
+    </section>
+
+    <section id="achievements" class="py-4">
+        <div class="container max-w">
+            <div class="section-heading reveal">
+                <span class="dot"></span>
+                <h2 class="h3 m-0">Achievements</h2>
+            </div>
+            <div class="card card-dark p-4 reveal">
+                <ul class="mb-0 text-muted">
+                    <li>Participated in coding contests and hackathons in college.</li>
+                    <li>Ranked as the top student in the Information Technology department.</li>
+                    <li>Participated in a hands-on five-day workshop on Android App Development.</li>
+                    <li>Participated in iShip at Technical Hub</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="py-4">
+        <div class="container max-w">
+            <div class="section-heading reveal">
+                <span class="dot"></span>
+                <h2 class="h3 m-0">Certifications</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="card card-dark p-4 h-100">
+                        <ul class="mb-0 text-muted">
+                            <li>Programming in Java — NPTEL, IIT Kharagpur (71%).</li>
+                            <li>Introduction to Internet of Things — NPTEL, IIT Kharagpur (82%).</li>
+                            <li>Android App Development Workshop Participation Certificate — APSCHE.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 reveal">
+                    <div class="card card-dark p-4 h-100">
+                        <p class="mb-0 text-muted">
+                            <ul class="mb-0 text-muted">
+                            <li>CiscoNetacad-HTML,CSS and JavaScript Essentials.</li>
+                            <li>Infosys Springboard-Fundamentals of Java Programming, Database Management System, IT Fundamentals:
+                            Operating System. </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container max-w">
+            <div class="section-heading reveal">
+                <span class="dot"></span>
+                <h2 class="h3 m-0">Send Me a Message</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 reveal">
+                    <div class="card card-dark p-4">
+                        <form id="contactForm" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label" style="color: white;">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Your name" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label" style="color: white;">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                    required />
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label" style="color: white;">Message</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Write your message..."
+                                    required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-send me-1"></i> Send
+                                </button>
+                            </div>
+                        </form>
+                        <p class="small text-muted mb-0 mt-3">
+                            Or email me directly at
+                            <a class="link-accent"
+                                href="mailto:deepthikamichetty336@gmail.com">deepthikamichetty336@gmail.com</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4">
+        <div class="container max-w d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+            <div class="text-muted">© <span id="year"></span> K. V. Pradeepthi</div>
+            <div class="d-flex align-items-center gap-3">
+                <a class="link-accent" href="https://github.com/KvPradeepthi" target="_blank" rel="noopener"><i
+                        class="bi bi-github"></i></a>
+                <a class="link-accent" href="https://www.linkedin.com/in/deepthi-kamichetty-bbb064295/" target="_blank"
+                    rel="noopener"><i class="bi bi-linkedin"></i></a>
+                <a class="link-accent" href="mailto:deepthikamichetty336@gmail.com"><i class="bi bi-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        // Current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Reveal on scroll
+        const revealEls = document.querySelectorAll(".reveal");
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("reveal-visible");
+                        io.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+        revealEls.forEach((el) => io.observe(el));
+
+        // Contact form -> mailto
+        const form = document.getElementById("contactForm");
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            const subject = encodeURIComponent("Portfolio Contact from " + name);
+            const body = encodeURIComponent(
+                "Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message
+            );
+            const mailto = "mailto:deepthikamichetty336@gmail.com?subject=" + subject + "&body=" + body;
+            window.location.href = mailto;
+        });
+    </script>
+</body>
+
+</html>
